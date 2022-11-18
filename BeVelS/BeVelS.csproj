@@ -1,0 +1,138 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <RepositoryUrl>https://github.com/JustinBritt/BeVelS</RepositoryUrl>
+    <Description>$(AssemblyName)</Description>
+    <Copyright>2022</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.194">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BeVelS.Audio.Caching\BeVelS.Audio.Caching.csproj" />
+    <ProjectReference Include="..\BeVelS.Audio.Channels\BeVelS.Audio.Channels.csproj" />
+    <ProjectReference Include="..\BeVelS.Audio.Mixers\BeVelS.Audio.Mixers.csproj" />
+    <ProjectReference Include="..\BeVelS.Audio.PlaybackEngines\BeVelS.Audio.PlaybackEngines.csproj" />
+    <ProjectReference Include="..\BeVelS.Audio.Players\BeVelS.Audio.Players.csproj" />
+    <ProjectReference Include="..\BeVelS.Audio.Readers\BeVelS.Audio.Readers.csproj" />
+    <ProjectReference Include="..\BeVelS.Audio.Resamplers\BeVelS.Audio.Resamplers.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Comparers\BeVelS.Common.Comparers.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Meshes\BeVelS.Common.Meshes.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Parallelism\BeVelS.Common.Parallelism.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Stopwatches\BeVelS.Common.Stopwatches.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Threading\BeVelS.Common.Threading.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Triangles\BeVelS.Common.Triangles.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Utilities\BeVelS.Common.Utilities.csproj" />
+    <ProjectReference Include="..\BeVelS.Common.Vectors\BeVelS.Common.Vectors.csproj" />
+    <ProjectReference Include="..\BeVelS.Dependencies.AssimpNet\BeVelS.Dependencies.AssimpNet.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Cameras\BeVelS.ECS.Components.Cameras.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.CollidableShapes\BeVelS.ECS.Components.CollidableShapes.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Debugging\BeVelS.ECS.Components.Debugging.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Fonts\BeVelS.ECS.Components.Fonts.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Framebuffers\BeVelS.ECS.Components.Framebuffers.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Guids\BeVelS.ECS.Components.Guids.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.RenderTargets\BeVelS.ECS.Components.RenderTargets.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Resolutions\BeVelS.ECS.Components.Resolutions.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Shapes\BeVelS.ECS.Components.Shapes.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.Cameras\BeVelS.ECS.Messages.Cameras.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.CommandLists\BeVelS.ECS.Messages.CommandLists.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.Debugging\BeVelS.ECS.Messages.Debugging.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.PlaybackEngines\BeVelS.ECS.Messages.PlaybackEngines.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.Recorders\BeVelS.ECS.Messages.Recorders.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.Renderers\BeVelS.ECS.Messages.Renderers.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.QuasiSystems.Runners\BeVelS.ECS.QuasiSystems.Runners.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.BufferPools\BeVelS.ECS.Systems.BufferPools.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Debugging\BeVelS.ECS.Systems.Debugging.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.PlaybackEngines\BeVelS.ECS.Systems.PlaybackEngines.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Simulations\BeVelS.ECS.Systems.Simulations.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.TimeSteps\BeVelS.ECS.Systems.TimeSteps.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems\BeVelS.ECS.Systems.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Cameras\BeVelS.ECS.Systems.Cameras.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.CollidableShapes\BeVelS.ECS.Systems.CollidableShapes.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.CommandLists\BeVelS.ECS.Systems.CommandLists.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Fonts\BeVelS.ECS.Systems.Fonts.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Framebuffers\BeVelS.ECS.Systems.Framebuffers.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.GraphicsDevices\BeVelS.ECS.Systems.GraphicsDevices.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Recorders\BeVelS.ECS.Systems.Recorders.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.RenderSurfaces\BeVelS.ECS.Systems.RenderSurfaces.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.RenderTargets\BeVelS.ECS.Systems.RenderTargets.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Resolutions\BeVelS.ECS.Systems.Resolutions.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Viewports\BeVelS.ECS.Systems.Viewports.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.BlendStates\BeVelS.Graphics.BlendStates.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.BufferConstants\BeVelS.Graphics.BufferConstants.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Buffers\BeVelS.Graphics.Buffers.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Cameras\BeVelS.Graphics.Cameras.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.CommandLists\BeVelS.Graphics.CommandLists.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Debugging\BeVelS.Graphics.Debugging.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.DepthStencilStates\BeVelS.Graphics.DepthStencilStates.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Fonts\BeVelS.Graphics.Fonts.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Framebuffers\BeVelS.Graphics.Framebuffers.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Glyphs\BeVelS.Graphics.Glyphs.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.GraphDataSeries\BeVelS.Graphics.GraphDataSeries.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.GraphicsDevices\BeVelS.Graphics.GraphicsDevices.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.GraphicsPipelines\BeVelS.Graphics.GraphicsPipelines.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.HTML\BeVelS.Graphics.HTML.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Images\BeVelS.Graphics.Images.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.KTX\BeVelS.Graphics.KTX.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Meshes\BeVelS.Graphics.Meshes.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.PostProcessors\BeVelS.Graphics.PostProcessors.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.RasterizerStates\BeVelS.Graphics.RasterizerStates.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Recorders\BeVelS.Graphics.Recorders.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.ResourceSets\BeVelS.Graphics.ResourceSets.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Samplers\BeVelS.Graphics.Samplers.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.ShaderSets\BeVelS.Graphics.ShaderSets.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Shapes\BeVelS.Graphics.Shapes.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Swapchains\BeVelS.Graphics.Swapchains.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Textures\BeVelS.Graphics.Textures.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Text\BeVelS.Graphics.Text.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.UILines\BeVelS.Graphics.UILines.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.VertexLayouts\BeVelS.Graphics.VertexLayouts.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Vertices\BeVelS.Graphics.Vertices.csproj" />
+    <ProjectReference Include="..\BeVelS.Graphics.Viewports\BeVelS.Graphics.Viewports.csproj" />
+    <ProjectReference Include="..\BeVelS.Physics\BeVelS.Physics.csproj" />
+    <ProjectReference Include="..\BeVelS.Physics.Callbacks\BeVelS.Physics.Callbacks.csproj" />
+    <ProjectReference Include="..\BeVelS.Physics.Collidables\BeVelS.Physics.Collidables.csproj" />
+    <ProjectReference Include="..\BeVelS.Physics.Constraints\BeVelS.Physics.Constraints.csproj" />
+    <ProjectReference Include="..\BeVelS.Physics.Meshes\BeVelS.Physics.Meshes.csproj" />
+    <ProjectReference Include="..\BeVelS.Physics.TimeSteps\BeVelS.Physics.TimeSteps.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BeVelS.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(AssemblyName).config" Pack="true" PackagePath="contentFiles/">
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="$(AssemblyName).targets" Pack="true" PackagePath="build/$(AssemblyName).targets">
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+</Project>

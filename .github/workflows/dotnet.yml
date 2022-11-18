@@ -1,0 +1,245 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NUGET_AUTH_TOKEN: ${{ github.token }}
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 7.0.100-preview.7.22377.5
+        fetch-depth: 0
+        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish package BeVelS
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Caching
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Caching/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Channels
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Channels/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Mixers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Mixers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.PlaybackEngines
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.PlaybackEngines/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Players
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Players/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Readers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Readers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Resamplers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Resamplers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Comparers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Comparers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Matrices
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Matrices/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Meshes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Meshes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.OrthonormalBasisBuilders
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.OrthonormalBasisBuilders/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Parallelism
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Parallelism/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Stopwatches
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Stopwatches/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Threading
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Threading/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Threading.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Threading.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Triangles
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Triangles/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Utilities
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Utilities/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Common.Vectors
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Common.Vectors/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Content.Fonts
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Content.Fonts/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Dependencies.AssimpNet
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Dependencies.AssimpNet/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Cameras
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Cameras/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.CollidableShapes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.CollidableShapes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Debugging
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Debugging/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Fonts
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Fonts/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Framebuffers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Framebuffers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Guids
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Guids/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Hosts.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Hosts.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Inputs.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Inputs.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.RenderTargets
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.RenderTargets/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Resolutions
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Resolutions/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Components.Shapes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Components.Shapes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.Cameras
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.Cameras/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.CommandLists
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.CommandLists/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.Debugging
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.Debugging/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.Hosts.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.Hosts.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.Inputs.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.Inputs.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.PlaybackEngines
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.PlaybackEngines/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.Recorders
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.Recorders/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Messages.Renderers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Messages.Renderers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.QuasiSystems.Runners
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.QuasiSystems.Runners/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.BufferPools
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.BufferPools/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Cameras
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Cameras/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.CollidableShapes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.CollidableShapes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.CommandLists
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.CommandLists/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Controls.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Controls.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Debugging
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Debugging/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Fonts
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Fonts/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Framebuffers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Framebuffers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.GraphicsDevices
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.GraphicsDevices/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Hosts.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Hosts.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Inputs.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Inputs.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.PlaybackEngines
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.PlaybackEngines/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Recorders
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Recorders/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.RenderSurfaces
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.RenderSurfaces/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.RenderTargets
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.RenderTargets/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Resolutions
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Resolutions/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Simulations
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Simulations/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.TimeSteps
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.TimeSteps/bin/Release/*.nupkg
+    - name: Publish package BeVelS.ECS.Systems.Viewports
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.ECS.Systems.Viewports/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.BackgroundRenderers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.BackgroundRenderers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.BlendStates
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.BlendStates/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.BufferConstants
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.BufferConstants/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Buffers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Buffers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Cameras
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Cameras/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.CommandLists
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.CommandLists/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Debugging
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Debugging/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.DepthStencilStates
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.DepthStencilStates/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Fonts
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Fonts/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Framebuffers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Framebuffers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Glyphs
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Glyphs/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.GraphDataSeries
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.GraphDataSeries/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.GraphicsDevices
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.GraphicsDevices/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.GraphicsPipelines
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.GraphicsPipelines/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.HTML
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.HTML/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Images
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Images/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.KTX
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.KTX/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.LineRenderers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.LineRenderers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Meshes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Meshes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.PostProcessors
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.PostProcessors/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.RasterizerStates
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.RasterizerStates/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Recorders
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Recorders/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.ResourceLayouts
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.ResourceLayouts/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.ResourceSets
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.ResourceSets/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Samplers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Samplers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Shaders
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Shaders/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.ShaderSets
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.ShaderSets/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.ShapeRenderers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.ShapeRenderers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Shapes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Shapes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Swapchains
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Swapchains/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Text
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Text/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Textures
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Textures/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.UILines
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.UILines/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.UIRenderers
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.UIRenderers/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Utilities
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Utilities/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.VertexLayouts
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.VertexLayouts/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Vertices
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Vertices/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Graphics.Viewports
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Graphics.Viewports/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Integration
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Integration/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Integration.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Integration.Windows/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Licensing
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Licensing/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Physics
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Physics/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Physics.Callbacks
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Physics.Callbacks/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Physics.Collidables
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Physics.Collidables/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Physics.Constraints
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Physics.Constraints/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Physics.Meshes
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Physics.Meshes/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Physics.TimeSteps
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Physics.TimeSteps/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Windows/bin/Release/*.nupkg

@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <RepositoryUrl>https://github.com/JustinBritt/BeVelS</RepositoryUrl>
+    <Description>$(AssemblyName)</Description>
+    <Copyright>2022</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.194">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BeVelS.ECS.Components.Hosts.Windows\BeVelS.ECS.Components.Hosts.Windows.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Components.Inputs.Windows\BeVelS.ECS.Components.Inputs.Windows.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.Hosts.Windows\BeVelS.ECS.Messages.Hosts.Windows.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Messages.Inputs.Windows\BeVelS.ECS.Messages.Inputs.Windows.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Controls.Windows\BeVelS.ECS.Systems.Controls.Windows.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Hosts.Windows\BeVelS.ECS.Systems.Hosts.Windows.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems.Inputs.Windows\BeVelS.ECS.Systems.Inputs.Windows.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BeVelS.Windows.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(AssemblyName).config" Pack="true" PackagePath="contentFiles/">
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="$(AssemblyName).targets" Pack="true" PackagePath="build/$(AssemblyName).targets">
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+</Project>
