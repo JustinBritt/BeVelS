@@ -52,19 +52,22 @@
         public void Update(
             float state)
         {
-            Int2 resolution = this.World.GetResolutionLast();
+            if (this.IsEnabled)
+            {
+                Int2 resolution = this.World.GetResolutionLast();
 
-            this.Viewport = this.ViewportFactory.Create(
-                height: resolution.Y,
-                maxDepth: 1f,
-                minDepth: this.World.GetGraphicsDeviceLast().IsDepthRangeZeroToOne ? 0f : -1f,
-                width: resolution.X,
-                X: 0f,
-                Y: 0f);
+                this.Viewport = this.ViewportFactory.Create(
+                    height: resolution.Y,
+                    maxDepth: 1f,
+                    minDepth: this.World.GetGraphicsDeviceLast().IsDepthRangeZeroToOne ? 0f : -1f,
+                    width: resolution.X,
+                    X: 0f,
+                    Y: 0f);
 
-            ref ViewportComponent viewportComponent = ref this.World.GetViewportComponentLastRef();
+                ref ViewportComponent viewportComponent = ref this.World.GetViewportComponentLastRef();
 
-            viewportComponent.Value = this.Viewport;
+                viewportComponent.Value = this.Viewport;
+            }
         }
 
         bool disposed;

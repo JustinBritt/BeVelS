@@ -42,9 +42,12 @@
         public void Update(
             float state)
         {
-            ref BufferPoolComponent bufferPoolComponent = ref this.World.GetBufferPoolComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref BufferPoolComponent bufferPoolComponent = ref this.World.GetBufferPoolComponentLastRef();
 
-            bufferPoolComponent.Value = this.BufferPool;
+                bufferPoolComponent.Value = this.BufferPool;
+            }
         }
 
         bool disposed;

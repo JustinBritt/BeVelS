@@ -42,9 +42,12 @@
         public void Update(
             float state)
         {
-            ref ResolutionComponent resolutionComponent = ref this.World.GetResolutionComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref ResolutionComponent resolutionComponent = ref this.World.GetResolutionComponentLastRef();
 
-            resolutionComponent.Value = this.Resolution.ToInt2();
+                resolutionComponent.Value = this.Resolution.ToInt2();
+            }
         }
 
         bool disposed;

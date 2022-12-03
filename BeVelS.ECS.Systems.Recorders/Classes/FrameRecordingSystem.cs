@@ -65,37 +65,40 @@
         public void Update(
             float state)
         {
-            if (this.FrameRecorderConfiguration.IsFrameRecordable(this.FrameCount))
+            if (this.IsEnabled)
             {
-                GraphicsDevice graphicsDevice = this.World.GetGraphicsDeviceLast();
+                if (this.FrameRecorderConfiguration.IsFrameRecordable(this.FrameCount))
+                {
+                    GraphicsDevice graphicsDevice = this.World.GetGraphicsDeviceLast();
 
-                CommandList commandList = this.CommandListFactory.Create(
-                    graphicsDevice);
+                    CommandList commandList = this.CommandListFactory.Create(
+                        graphicsDevice);
 
-                commandList.Begin();
+                    commandList.Begin();
 
-                commandList.SetFramebuffer(
-                    this.World.GetResolvedFramebufferLast());
+                    commandList.SetFramebuffer(
+                        this.World.GetResolvedFramebufferLast());
 
-                this.FrameRecorder.CopyToStagingTexture(
-                    commandList: commandList,
-                    graphicsDevice: graphicsDevice,
-                    sourceTexture: this.World.GetResolvedColorBufferLast());
+                    this.FrameRecorder.CopyToStagingTexture(
+                        commandList: commandList,
+                        graphicsDevice: graphicsDevice,
+                        sourceTexture: this.World.GetResolvedColorBufferLast());
 
-                commandList.End();
+                    commandList.End();
 
-                this.World.Publish(
-                    this.CommandListSubmitCommandsMessageFactory.Create(
-                        commandList));
+                    this.World.Publish(
+                        this.CommandListSubmitCommandsMessageFactory.Create(
+                            commandList));
 
-                this.World.Publish(
-                    this.RecordedFrameAddImageToAnimatedGifMessageFactory.Create(
-                        this.FrameRecorder.GetImage(
-                            graphicsDevice,
-                            this.FrameRecorder.StagingTexture)));
+                    this.World.Publish(
+                        this.RecordedFrameAddImageToAnimatedGifMessageFactory.Create(
+                            this.FrameRecorder.GetImage(
+                                graphicsDevice,
+                                this.FrameRecorder.StagingTexture)));
+                }
+
+                this.FrameCount++;
             }
-
-            this.FrameCount++;
         }
 
         bool disposed;

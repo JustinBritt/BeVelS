@@ -50,11 +50,14 @@
         public void Update(
             float state)
         {
-            this.FixedTimestep.Timestep(
-                this.Simulation,
-                this.ThreadDispatcher,
-                timestepsPerUpdate: 2,
-                timeToSimulate: 1f / 60f);
+            if (this.IsEnabled)
+            {
+                this.FixedTimestep.Timestep(
+                    this.Simulation,
+                    this.ThreadDispatcher,
+                    timestepsPerUpdate: 2,
+                    timeToSimulate: 1f / 60f);
+            }
         }
 
         bool disposed;

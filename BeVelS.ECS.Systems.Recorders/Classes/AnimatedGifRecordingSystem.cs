@@ -62,6 +62,9 @@
         public void Update(
             float state)
         {
+            if (this.IsEnabled)
+            {
+            }
         }
 
         bool disposed;

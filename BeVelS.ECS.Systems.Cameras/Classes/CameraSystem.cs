@@ -64,9 +64,12 @@
         public void Update(
             float state)
         {
-            ref CameraComponent cameraComponent = ref this.World.GetCameraComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref CameraComponent cameraComponent = ref this.World.GetCameraComponentLastRef();
 
-            cameraComponent.Value = this.Camera;
+                cameraComponent.Value = this.Camera;
+            }
         }
 
         bool disposed;

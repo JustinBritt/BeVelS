@@ -40,9 +40,12 @@
         public void Update(
             float state)
         {
-            ref SimulationComponent simulationComponent = ref this.World.GetSimulationComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref SimulationComponent simulationComponent = ref this.World.GetSimulationComponentLastRef();
 
-            simulationComponent.Value = this.Simulation;
+                simulationComponent.Value = this.Simulation;
+            }
         }
 
         bool disposed;
