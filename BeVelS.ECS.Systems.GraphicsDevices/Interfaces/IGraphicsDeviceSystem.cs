@@ -1,14 +1,11 @@
 ﻿namespace BeVelS.ECS.Systems.GraphicsDevices.Interfaces
 {
-    using DefaultEcs.System;
-
     using Veldrid;
 
-    public interface IGraphicsDeviceSystem : ISystem<float>
+    using BeVelS.ECS.Systems.Interfaces;
+
+    public interface IGraphicsDeviceSystem : IPostUpdateSystem<float>
     {
         GraphicsDevice GraphicsDevice { get; }
-
-        void PostUpdate(
-            float state);
     }
 }
