@@ -39,14 +39,20 @@
         public void PostUpdate(
             float state)
         {
-            this.GraphicsDevice.SwapBuffers();
+            if (this.IsEnabled)
+            {
+                this.GraphicsDevice.SwapBuffers();
 
-            this.GraphicsDevice.WaitForIdle();
+                this.GraphicsDevice.WaitForIdle();
+            }
         }
 
         public void Update(
             float state)
         {
+            if (this.IsEnabled)
+            {
+            }
         }
 
         bool disposed;

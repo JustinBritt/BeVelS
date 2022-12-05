@@ -66,33 +66,39 @@
         public void PostUpdate(
             float state)
         {
-            GraphicsDevice graphicsDevice = this.World.GetGraphicsDeviceLast();
-
-            foreach (CommandList commandList in this.PostUpdateCommandLists)
+            if (this.IsEnabled)
             {
-                graphicsDevice.SubmitCommands(
-                    commandList);
+                GraphicsDevice graphicsDevice = this.World.GetGraphicsDeviceLast();
 
-                commandList.Dispose();
+                foreach (CommandList commandList in this.PostUpdateCommandLists)
+                {
+                    graphicsDevice.SubmitCommands(
+                        commandList);
+
+                    commandList.Dispose();
+                }
+
+                this.PostUpdateCommandLists.Clear();
             }
-
-            this.PostUpdateCommandLists.Clear();
         }
 
         public void Update(
             float state)
         {
-            GraphicsDevice graphicsDevice = this.World.GetGraphicsDeviceLast();
-
-            foreach (CommandList commandList in this.UpdateCommandLists)
+            if (this.IsEnabled)
             {
-                graphicsDevice.SubmitCommands(
-                    commandList);
+                GraphicsDevice graphicsDevice = this.World.GetGraphicsDeviceLast();
 
-                commandList.Dispose();
+                foreach (CommandList commandList in this.UpdateCommandLists)
+                {
+                    graphicsDevice.SubmitCommands(
+                        commandList);
+
+                    commandList.Dispose();
+                }
+
+                this.UpdateCommandLists.Clear();
             }
-
-            this.UpdateCommandLists.Clear();
         }
 
         bool disposed;

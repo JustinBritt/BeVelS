@@ -47,18 +47,24 @@
         public void PostUpdate(
             float state)
         {
-            this.GraphicsDeviceSystem.PostUpdate(
-                state);
+            if (this.IsEnabled)
+            {
+                this.GraphicsDeviceSystem.PostUpdate(
+                    state);
+            }
         }
 
         public void Update(
             float state)
         {
-            this.GraphicsDeviceSystem.Update(
-                state);
+            if (this.IsEnabled)
+            {
+                this.GraphicsDeviceSystem.Update(
+                    state);
 
-            this.ResolutionSystem.Update(
-                state);
+                this.ResolutionSystem.Update(
+                    state);
+            }
         }
 
         bool disposed;
