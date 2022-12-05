@@ -66,9 +66,12 @@
         public void Update(
             float state)
         {
-            ref FontComponent fontComponent = ref this.World.GetFontComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref FontComponent fontComponent = ref this.World.GetFontComponentLastRef();
 
-            fontComponent.Value = this.Font;
+                fontComponent.Value = this.Font;
+            }
         }
 
         bool disposed;

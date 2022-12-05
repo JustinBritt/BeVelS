@@ -41,20 +41,23 @@
             float state,
             in Entity entity)
         {
-            ref CollidableMobilityComponent collidableMobilityComponent = ref entity.Get<CollidableMobilityComponent>();
-
-            if (collidableMobilityComponent.Value != CollidableMobility.Static)
+            if (this.IsEnabled)
             {
-                ref CollidableShapeComponent collidableShapeComponent = ref entity.Get<CollidableShapeComponent>();
+                ref CollidableMobilityComponent collidableMobilityComponent = ref entity.Get<CollidableMobilityComponent>();
 
-                ref ShapeInstanceComponent shapeInstanceComponent = ref entity.Get<ShapeInstanceComponent>();
+                if (collidableMobilityComponent.Value != CollidableMobility.Static)
+                {
+                    ref CollidableShapeComponent collidableShapeComponent = ref entity.Get<CollidableShapeComponent>();
 
-                ref TShapeComponent TShapeComponent = ref entity.Get<TShapeComponent>();
+                    ref ShapeInstanceComponent shapeInstanceComponent = ref entity.Get<ShapeInstanceComponent>();
 
-                shapeInstanceComponent.Value = this.ShapeInstanceFactory.Create(
-                    collidableShapeComponent.CollidableReference,
-                    TShapeComponent.Value,
-                    collidableShapeComponent.Simulation);
+                    ref TShapeComponent TShapeComponent = ref entity.Get<TShapeComponent>();
+
+                    shapeInstanceComponent.Value = this.ShapeInstanceFactory.Create(
+                        collidableShapeComponent.CollidableReference,
+                        TShapeComponent.Value,
+                        collidableShapeComponent.Simulation);
+                }
             }
         }
     }

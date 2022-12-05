@@ -63,9 +63,12 @@
         public void Update(
             float state)
         {
-            ref RenderDocDebuggerComponent RenderDocDebuggerComponent = ref this.World.GetRenderDocDebuggerComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref RenderDocDebuggerComponent RenderDocDebuggerComponent = ref this.World.GetRenderDocDebuggerComponentLastRef();
 
-            RenderDocDebuggerComponent.Value = this.RenderDocDebugger;
+                RenderDocDebuggerComponent.Value = this.RenderDocDebugger;
+            }    
         }
 
         bool disposed;
