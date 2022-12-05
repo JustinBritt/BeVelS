@@ -47,6 +47,9 @@
         public void PostUpdate(
             float state)
         {
+            if (this.IsEnabled)
+            {
+            }
         }
 
         public void Update(
