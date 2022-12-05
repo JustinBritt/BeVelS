@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BeVelS.ECS.Components.Resolutions\BeVelS.ECS.Components.Resolutions.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems\BeVelS.ECS.Systems.csproj" />
     <ProjectReference Include="..\BeVelS.Graphics.Viewports\BeVelS.Graphics.Viewports.csproj" />
   </ItemGroup>
 
