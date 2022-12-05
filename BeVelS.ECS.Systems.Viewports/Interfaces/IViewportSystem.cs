@@ -1,10 +1,8 @@
 ﻿namespace BeVelS.ECS.Systems.Viewports.Interfaces
 {
-    using DefaultEcs.System;
+    using BeVelS.ECS.Systems.Interfaces;
 
-    public interface IViewportSystem : ISystem<float>
+    public interface IViewportSystem : IPostUpdateSystem<float>
     {
-        void PostUpdate(
-            float state);
     }
 }
