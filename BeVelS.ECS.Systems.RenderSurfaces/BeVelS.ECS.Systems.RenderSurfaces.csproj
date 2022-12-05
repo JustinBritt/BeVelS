@@ -37,6 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BeVelS.ECS.Systems.GraphicsDevices\BeVelS.ECS.Systems.GraphicsDevices.csproj" />
     <ProjectReference Include="..\BeVelS.ECS.Systems.Resolutions\BeVelS.ECS.Systems.Resolutions.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems\BeVelS.ECS.Systems.csproj" />
   </ItemGroup>
 
   <ItemGroup>
