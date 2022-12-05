@@ -55,9 +55,12 @@
         public void Update(
             float state)
         {
-            ref Win32InputComponent win32InputComponent = ref this.World.GetWin32InputComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref Win32InputComponent win32InputComponent = ref this.World.GetWin32InputComponentLastRef();
 
-            win32InputComponent.Value = this.Win32Input;
+                win32InputComponent.Value = this.Win32Input;
+            }
         }
 
         bool disposed;

@@ -68,9 +68,12 @@
         public void Update(
             float state)
         {
-            ref ResolvedFramebufferComponent resolvedFramebufferComponent = ref this.World.GetResolvedFramebufferComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref ResolvedFramebufferComponent resolvedFramebufferComponent = ref this.World.GetResolvedFramebufferComponentLastRef();
 
-            resolvedFramebufferComponent.Value = this.ResolvedFramebuffer;
+                resolvedFramebufferComponent.Value = this.ResolvedFramebuffer;
+            }   
         }
 
         bool disposed;

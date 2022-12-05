@@ -48,9 +48,12 @@
         public void Update(
             float state)
         {
-            ref Win32HostComponent win32HostComponent = ref this.World.GetWin32HostComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref Win32HostComponent win32HostComponent = ref this.World.GetWin32HostComponentLastRef();
 
-            win32HostComponent.Value = this.Win32Host;
+                win32HostComponent.Value = this.Win32Host;
+            }
         }
 
         bool disposed;

@@ -107,8 +107,11 @@
         public void Update(
             float state)
         {
-            this.SequentialSystem.Update(
-                state);
+            if (this.IsEnabled)
+            {
+                this.SequentialSystem.Update(
+                    state);
+            }    
         }
 
         bool disposed;

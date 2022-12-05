@@ -55,93 +55,96 @@
         public void Update(
             float state)
         {
-            ICamera camera = this.World.GetCameraLast();
-
-            IWin32Host win32Host = this.World.GetWin32HostLast();
-
-            IWin32Input win32Input = this.World.GetWin32InputLast();
-
-            if (win32Host.Focused)
+            if (this.IsEnabled)
             {
-                if (this.Controls.Exit.WasTriggered(win32Input))
-                {
-                    this.World.Publish<Win32HostCloseMessage>(
-                        default);
+                ICamera camera = this.World.GetCameraLast();
 
-                    return;
-                }
+                IWin32Host win32Host = this.World.GetWin32HostLast();
 
-                if (this.Controls.MoveFaster.WasTriggered(win32Input))
+                IWin32Input win32Input = this.World.GetWin32InputLast();
+
+                if (win32Host.Focused)
                 {
-                    switch (this.CameraSpeedState)
+                    if (this.Controls.Exit.WasTriggered(win32Input))
                     {
-                        case CameraMoveSpeedState.Slow:
-                            this.CameraSpeedState = CameraMoveSpeedState.Regular;
-                            break;
-                        case CameraMoveSpeedState.Regular:
-                            this.CameraSpeedState = CameraMoveSpeedState.Fast;
-                            break;
+                        this.World.Publish<Win32HostCloseMessage>(
+                            default);
+
+                        return;
                     }
-                }
 
-                if (this.Controls.MoveSlower.WasTriggered(win32Input))
-                {
-                    switch (this.CameraSpeedState)
+                    if (this.Controls.MoveFaster.WasTriggered(win32Input))
                     {
-                        case CameraMoveSpeedState.Regular:
-                            this.CameraSpeedState = CameraMoveSpeedState.Slow;
-                            break;
-                        case CameraMoveSpeedState.Fast:
-                            this.CameraSpeedState = CameraMoveSpeedState.Regular;
-                            break;
+                        switch (this.CameraSpeedState)
+                        {
+                            case CameraMoveSpeedState.Slow:
+                                this.CameraSpeedState = CameraMoveSpeedState.Regular;
+                                break;
+                            case CameraMoveSpeedState.Regular:
+                                this.CameraSpeedState = CameraMoveSpeedState.Fast;
+                                break;
+                        }
                     }
-                }
 
-                Vector3 cameraOffset = default;
-
-                if (this.Controls.MoveForward.IsDown(win32Input))
-                    cameraOffset += camera.Forward;
-                if (this.Controls.MoveBackward.IsDown(win32Input))
-                    cameraOffset += camera.Backward;
-                if (this.Controls.MoveLeft.IsDown(win32Input))
-                    cameraOffset += camera.Left;
-                if (this.Controls.MoveRight.IsDown(win32Input))
-                    cameraOffset += camera.Right;
-                if (this.Controls.MoveUp.IsDown(win32Input))
-                    cameraOffset += camera.Up;
-                if (this.Controls.MoveDown.IsDown(win32Input))
-                    cameraOffset += camera.Down;
-
-                float length = cameraOffset.Length();
-
-                if (length > 1e-7f)
-                {
-                    float cameraMoveSpeed = this.CameraSpeedState switch
+                    if (this.Controls.MoveSlower.WasTriggered(win32Input))
                     {
-                        CameraMoveSpeedState.Slow => this.Controls.CameraSlowMoveSpeed,
+                        switch (this.CameraSpeedState)
+                        {
+                            case CameraMoveSpeedState.Regular:
+                                this.CameraSpeedState = CameraMoveSpeedState.Slow;
+                                break;
+                            case CameraMoveSpeedState.Fast:
+                                this.CameraSpeedState = CameraMoveSpeedState.Regular;
+                                break;
+                        }
+                    }
 
-                        CameraMoveSpeedState.Regular => this.Controls.CameraMoveSpeed,
+                    Vector3 cameraOffset = default;
 
-                        CameraMoveSpeedState.Fast => this.Controls.CameraFastMoveSpeed,
+                    if (this.Controls.MoveForward.IsDown(win32Input))
+                        cameraOffset += camera.Forward;
+                    if (this.Controls.MoveBackward.IsDown(win32Input))
+                        cameraOffset += camera.Backward;
+                    if (this.Controls.MoveLeft.IsDown(win32Input))
+                        cameraOffset += camera.Left;
+                    if (this.Controls.MoveRight.IsDown(win32Input))
+                        cameraOffset += camera.Right;
+                    if (this.Controls.MoveUp.IsDown(win32Input))
+                        cameraOffset += camera.Up;
+                    if (this.Controls.MoveDown.IsDown(win32Input))
+                        cameraOffset += camera.Down;
 
-                        _ => this.Controls.CameraMoveSpeed
-                    };
+                    float length = cameraOffset.Length();
 
-                    cameraOffset *= state * cameraMoveSpeed / length;
+                    if (length > 1e-7f)
+                    {
+                        float cameraMoveSpeed = this.CameraSpeedState switch
+                        {
+                            CameraMoveSpeedState.Slow => this.Controls.CameraSlowMoveSpeed,
+
+                            CameraMoveSpeedState.Regular => this.Controls.CameraMoveSpeed,
+
+                            CameraMoveSpeedState.Fast => this.Controls.CameraFastMoveSpeed,
+
+                            _ => this.Controls.CameraMoveSpeed
+                        };
+
+                        cameraOffset *= state * cameraMoveSpeed / length;
+                    }
+                    else
+                    {
+                        cameraOffset = default;
+                    }
+
+                    this.World.Publish<CameraSetPositionMessage>(
+                        this.CameraSetPositionMessageFactory.Create(
+                            camera.Position + cameraOffset));
                 }
                 else
                 {
-                    cameraOffset = default;
+                    this.World.Publish<Win32InputUnlockMouseMessage>(
+                        default);
                 }
-
-                this.World.Publish<CameraSetPositionMessage>(
-                    this.CameraSetPositionMessageFactory.Create(
-                        camera.Position + cameraOffset));
-            }
-            else
-            {
-                this.World.Publish<Win32InputUnlockMouseMessage>(
-                    default);
             }
         }
 
