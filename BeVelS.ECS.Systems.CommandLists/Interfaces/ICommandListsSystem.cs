@@ -1,10 +1,8 @@
 ﻿namespace BeVelS.ECS.Systems.CommandLists.Interfaces
 {
-    using DefaultEcs.System;
+    using BeVelS.ECS.Systems.Interfaces;
 
-    public interface ICommandListsSystem : ISystem<float>
+    public interface ICommandListsSystem : IPostUpdateSystem<float>
     {
-        void PostUpdate(
-            float state);
     }
 }
