@@ -84,9 +84,12 @@
         public void Update(
             float state)
         {
-            ref ColorBufferComponent colorBufferComponent = ref this.World.GetColorBufferComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref ColorBufferComponent colorBufferComponent = ref this.World.GetColorBufferComponentLastRef();
 
-            colorBufferComponent.Value = this.ColorBuffer;
+                colorBufferComponent.Value = this.ColorBuffer;
+            }
         }
 
         bool disposed;

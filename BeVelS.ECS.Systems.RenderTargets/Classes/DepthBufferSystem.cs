@@ -13,7 +13,8 @@
     using BeVelS.ECS.Systems.RenderTargets.Interfaces;
 
     using BeVelS.Graphics.Textures.InterfacesFactories;
-    
+    using Vortice.DXGI;
+
     internal sealed class DepthBufferSystem : IDepthBufferSystem
     {
         public DepthBufferSystem(
@@ -86,9 +87,12 @@
         public void Update(
             float state)
         {
-            ref DepthBufferComponent depthBufferComponent = ref this.World.GetDepthBufferComponentLastRef();
+            if (this.IsEnabled)
+            {
+                ref DepthBufferComponent depthBufferComponent = ref this.World.GetDepthBufferComponentLastRef();
 
-            depthBufferComponent.Value = this.DepthBuffer;
+                depthBufferComponent.Value = this.DepthBuffer;
+            }    
         }
 
         bool disposed;
