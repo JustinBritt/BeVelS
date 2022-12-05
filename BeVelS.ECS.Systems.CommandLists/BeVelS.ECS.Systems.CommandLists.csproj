@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BeVelS.ECS.Messages.CommandLists\BeVelS.ECS.Messages.CommandLists.csproj" />
+    <ProjectReference Include="..\BeVelS.ECS.Systems\BeVelS.ECS.Systems.csproj" />
   </ItemGroup>
 
   <ItemGroup>
