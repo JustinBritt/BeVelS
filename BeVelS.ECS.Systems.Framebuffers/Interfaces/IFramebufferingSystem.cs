@@ -2,11 +2,10 @@
 {
     using BepuUtilities;
 
-    using DefaultEcs.System;
-
+    using BeVelS.ECS.Systems.Interfaces;
     using BeVelS.ECS.Systems.RenderTargets.Interfaces;
 
-    public interface IFramebufferingSystem : ISystem<float>
+    public interface IFramebufferingSystem : IPostUpdateSystem<float>
     {
         IColorBufferSystem ColorBufferSystem { get; }
 
