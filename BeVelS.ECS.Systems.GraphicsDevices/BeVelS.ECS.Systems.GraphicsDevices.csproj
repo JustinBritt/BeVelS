@@ -49,4 +49,8 @@
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BeVelS.ECS.Systems\BeVelS.ECS.Systems.csproj" />
+  </ItemGroup>
 </Project>
