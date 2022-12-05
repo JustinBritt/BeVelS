@@ -15,8 +15,5 @@
 
         void OnResize(
             Int2 resolution);
-
-        public void PostUpdate(
-            float state);
     }
 }
