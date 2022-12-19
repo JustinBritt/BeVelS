@@ -31,6 +31,8 @@ jobs:
       run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Caching/bin/Release/*.nupkg
     - name: Publish package BeVelS.Audio.Channels
       run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Channels/bin/Release/*.nupkg
+    - name: Publish package BeVelS.Audio.Devices.Windows
+      run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Devices.Windows/bin/Release/*.nupkg
     - name: Publish package BeVelS.Audio.Mixers
       run: dotnet nuget push ${{ github.workspace }}/BeVelS.Audio.Mixers/bin/Release/*.nupkg
     - name: Publish package BeVelS.Audio.PlaybackEngines

@@ -2,6 +2,8 @@
 {
     public interface IBeVelSWindowsAbstractFactory
     {
+        BeVelS.Audio.Devices.Windows.InterfacesAbstractFactories.IDevicesAbstractFactory CreateAudioDevicesWindowsAbstractFactory();
+
         BeVelS.ECS.Components.Hosts.Windows.InterfacesAbstractFactories.IHostsWindowsAbstractFactory CreateECSComponentsHostsWindowsAbstractFactory();
 
         BeVelS.ECS.Components.Inputs.Windows.InterfacesAbstractFactories.IInputsWindowsAbstractFactory CreateECSComponentsInputsWindowsAbstractFactory();

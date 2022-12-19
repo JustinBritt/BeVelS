@@ -19,6 +19,24 @@
             return new BeVelSWindowsAbstractFactory();
         }
 
+        public BeVelS.Audio.Devices.Windows.InterfacesAbstractFactories.IDevicesAbstractFactory CreateAudioDevicesWindowsAbstractFactory()
+        {
+            BeVelS.Audio.Devices.Windows.InterfacesAbstractFactories.IDevicesAbstractFactory factory = null;
+
+            try
+            {
+                factory = new BeVelS.Audio.Devices.Windows.AbstractFactories.DevicesAbstractFactory();
+            }
+            catch (Exception exception)
+            {
+                this.Log.Error(
+                    exception.Message,
+                    exception);
+            }
+
+            return factory;
+        }
+
         public BeVelS.ECS.Components.Hosts.Windows.InterfacesAbstractFactories.IHostsWindowsAbstractFactory CreateECSComponentsHostsWindowsAbstractFactory()
         {
             BeVelS.ECS.Components.Hosts.Windows.InterfacesAbstractFactories.IHostsWindowsAbstractFactory factory = null;

@@ -221,6 +221,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeVelS.ECS.Messages.Playbac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeVelS.ECS.Systems.PlaybackEngines", "BeVelS.ECS.Systems.PlaybackEngines\BeVelS.ECS.Systems.PlaybackEngines.csproj", "{5A636F6C-7D8A-4846-A99D-BB754D219991}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeVelS.Audio.Devices.Windows", "BeVelS.Audio.Devices.Windows\BeVelS.Audio.Devices.Windows.csproj", "{7EC644B1-6D85-4F60-B38A-BD1839166F70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -663,6 +665,10 @@ Global
 		{5A636F6C-7D8A-4846-A99D-BB754D219991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A636F6C-7D8A-4846-A99D-BB754D219991}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A636F6C-7D8A-4846-A99D-BB754D219991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EC644B1-6D85-4F60-B38A-BD1839166F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC644B1-6D85-4F60-B38A-BD1839166F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC644B1-6D85-4F60-B38A-BD1839166F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC644B1-6D85-4F60-B38A-BD1839166F70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
